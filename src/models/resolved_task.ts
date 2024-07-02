@@ -1,4 +1,4 @@
-export class TaskCalculatedRequest {
+export class ResolvedTask {
   id: string;
   result: number;
 

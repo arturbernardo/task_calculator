@@ -1,15 +1,15 @@
 import Router from 'koa-router';
-import TaskService from '../services/task_service';
+import MathService from '../services/math_service';
 import TaskDao from '../repositories/task_dao';
 import TaskAdapter from '../adapters/task_adapter';
 
 const router = new Router();
 
-const taskService = new TaskService(new TaskDao(), new TaskAdapter());
+const mathService = new MathService(new TaskDao(), new TaskAdapter());
 
 router.get('/', async (ctx) => {
-  const data = await taskService.findAll();
-  await ctx.render('index.ejs', {data: data});
+  const data = await mathService.findAll();
+  await ctx.render('index', {data: data});
 });
 
 export { router };

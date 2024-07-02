@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { TaskResponse } from '../models/task_response';
-import { TaskCalculatedRequest } from '../models/task_calculated_request';
+import { ArithmeticTask } from '../models/arithmetic_task';
+import { ResolvedTask } from '../models/resolved_task';
 import config from '../configs/config';
 
 const api = axios.create({
@@ -8,12 +8,12 @@ const api = axios.create({
 });
 
 export default class TaskAdapter {
-  async get() : Promise<TaskResponse> {
-    const result = await api.get<TaskResponse>('/v1/get-task');
+  async get() : Promise<ArithmeticTask> {
+    const result = await api.get<ArithmeticTask>('/v1/get-task');
     return result.data;
   }
 
-  async post(request : TaskCalculatedRequest) : Promise<string> {
+  async post(request : ResolvedTask) : Promise<string> {
     try {
       console.log(request);
       const result = await api.post<string>('/v1/submit-task', request);

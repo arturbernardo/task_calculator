@@ -1,24 +1,24 @@
 import Router from 'koa-router';
-import TaskService from '../services/task_service';
+import MathService from '../services/math_service';
 import TaskDao from '../repositories/task_dao';
 import TaskAdapter from '../adapters/task_adapter';
 
 const router = new Router();
 
-const taskService = new TaskService(new TaskDao(), new TaskAdapter());
+const mathService = new MathService(new TaskDao(), new TaskAdapter());
 
 router.get('/', async (ctx) => {
-  const data = await taskService.findAll();
+  const data = await mathService.findAll();
   ctx.body = data;
 });
 
 router.post('/', async (ctx) => {
-  const data = await taskService.getTask();
+  const data = await mathService.getTask();
   ctx.body = data;
 });
 
 router.post('/calculateAndVerify', async (ctx) => {
-  const data = await taskService.calculateAndVerify();
+  const data = await mathService.calculateAndVerify();
   ctx.body = data;
 });
 

@@ -5,15 +5,15 @@ export class DashBoardItem {
   right: number;
   left: number;
   operation: Operation;
-  calculation: number;
-  result: string;
+  result: number;
+  validationStatus: string;
 
-  constructor(id: string, right: number, left: number, operation: Operation, calculation: number, result: string) {
+  constructor(id: string, right: number, left: number, operation: Operation, result: number, validationStatus: string) {
     this.id = id;
     this.right = right;
     this.left = left;
     this.operation = operation;
-    this.calculation = calculation;
     this.result = result;
+    this.validationStatus = validationStatus;
   }
 }
