@@ -16,7 +16,7 @@ class PeriodicTask {
   
     private executeTask() {
       taskService.calculateAndVerify();
-      console.log("Task executed at", new Date().toLocaleTimeString());
+      console.log('Task executed at', new Date().toLocaleTimeString());
     }
   }
   

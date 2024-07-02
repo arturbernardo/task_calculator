@@ -16,7 +16,7 @@ const config : Config = {
 
 function parseEnvString(value: string | undefined): string {
   if (value === undefined) {
-    throw new Error(`Invalid number format for environment variable: ${value}`);
+    throw new Error('Environment variable must be defined');
   }
   return value;
 }

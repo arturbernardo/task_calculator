@@ -1,8 +1,8 @@
-import TaskDao from "../repositories/task_dao";
-import TaskAdapter from "../adapters/task_adapter";
-import { TaskResponse } from "../models/task_response";
-import { TaskCalculatedRequest } from "../models/task_calculated_request";
-import { DashBoardItem } from "../models/dashboard_item";
+import TaskDao from '../repositories/task_dao';
+import TaskAdapter from '../adapters/task_adapter';
+import { TaskResponse } from '../models/task_response';
+import { TaskCalculatedRequest } from '../models/task_calculated_request';
+import { DashBoardItem } from '../models/dashboard_item';
 
 export default class TaskService {  
   private readonly taskRepository: TaskDao;
@@ -28,26 +28,9 @@ export default class TaskService {
   async calculateAndVerify() : Promise<DashBoardItem> {
     const calculationRequest = await this.taskAdapter.get();
     
-    // TODO - melhorar nomes dos objetos e variaveis. 
-  
-    let calculation = 0;
-    if (calculationRequest.operation == "subtraction") {
-      calculation = calculationRequest.left - calculationRequest.right
-    }
-    if (calculationRequest.operation == "addition") {
-      calculation = calculationRequest.left + calculationRequest.right
-    }
-    if (calculationRequest.operation == "multiplication") {
-      calculation = calculationRequest.left * calculationRequest.right
-    }
-    if (calculationRequest.operation == "division") {
-      calculation = calculationRequest.left / calculationRequest.right
-    }
-    if (calculationRequest.operation == "remainder") {
-      calculation = calculationRequest.left % calculationRequest.right
-    }
+    const calculation = this.calculate(calculationRequest);
 
-    const calculatedRequest = new TaskCalculatedRequest(calculationRequest.id, calculation);
+    const calculatedRequest : TaskCalculatedRequest = {id: calculationRequest.id, result: calculation};
 
     const calculationResult = await this.taskAdapter.post(calculatedRequest);
 
@@ -55,5 +38,22 @@ export default class TaskService {
 
     this.taskRepository.save(item);
     return item;
+  }
+
+  private calculate(calculationRequest: TaskResponse) : number {
+    switch (calculationRequest.operation) {
+      case 'addition':
+        return calculationRequest.left + calculationRequest.right;
+      case 'subtraction':
+        return calculationRequest.left - calculationRequest.right;
+      case 'division':
+        return calculationRequest.left / calculationRequest.right;
+      case 'multiplication':
+        return calculationRequest.left * calculationRequest.right;
+        case 'remainder':
+          return calculationRequest.left % calculationRequest.right;
+      default:
+        throw new Error(`Invalid operation {calculationRequest.operation}`);
+    }
   }
 }

@@ -1,6 +1,6 @@
 export type Operation = 
-    "addition" 
-    | "subtraction" 
-    | "multiplication" 
-    | "division" 
-    | "remainder";
+    'addition' 
+    | 'subtraction' 
+    | 'multiplication' 
+    | 'division' 
+    | 'remainder';

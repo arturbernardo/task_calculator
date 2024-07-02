@@ -1,14 +1,31 @@
 <html>
-   <body>
-    <% data.forEach(task => { %>
-      <div>
-        <p>id: <%= task.id %></p>
-        <p>Left: <%= task.left %></p>
-        <p>Right: <%= task.right %></p>
-        <p>Operation: <%= task.operation %></p>
-        <p>Calculation: <%= task.calculation %></p>
-        <p>Result: <%= task.result %></p>
-      </div>
-  <% }) %>
-   </body>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <body>
+  <div >
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Left</th>
+          <th>Right</th>
+          <th>Operation</th>
+          <th>Calculation</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(task => { %>
+          <tr>
+            <td> <%= task.id %></td>
+            <td> <%= task.left %></td>
+            <td> <%= task.right %></td>
+            <td> <%= task.operation %></td>
+            <td> <%= task.calculation %></td>
+            <td> <%= task.result %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  </body>
 </html>

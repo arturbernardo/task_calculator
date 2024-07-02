@@ -1,4 +1,4 @@
-import { Operation } from "./operation";
+import { Operation } from './operation';
 
 export interface TaskResponse {
   id: string;

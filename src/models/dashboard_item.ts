@@ -1,4 +1,4 @@
-import { Operation } from "./operation";
+import { Operation } from './operation';
 
 export class DashBoardItem {
   id: string;
