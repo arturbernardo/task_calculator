@@ -1,13 +1,13 @@
-import { DashBoardItem } from '../models/dashboard_item';
+import { ValidatedTask } from '../models/validated_task';
 
-let inMemoryData: DashBoardItem[] = [];
+let inMemoryData: ValidatedTask[] = [];
 
 export default class TaskDao {
-  save(data : DashBoardItem) {
+  save(data : ValidatedTask) {
     inMemoryData = [data, ...inMemoryData];
   }
 
-  findAll(): Promise<DashBoardItem[]> {
+  findAll(): Promise<ValidatedTask[]> {
     return Promise.resolve(inMemoryData);
   }
 }

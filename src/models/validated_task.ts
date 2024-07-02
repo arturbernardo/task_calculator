@@ -1,6 +1,6 @@
 import { Operation } from './operation';
 
-export class DashBoardItem {
+export class ValidatedTask {
   id: string;
   right: number;
   left: number;

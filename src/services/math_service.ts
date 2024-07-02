@@ -2,7 +2,7 @@ import TaskDao from '../repositories/task_dao';
 import TaskAdapter from '../adapters/task_adapter';
 import { ArithmeticTask } from '../models/arithmetic_task';
 import { ResolvedTask } from '../models/resolved_task';
-import { DashBoardItem } from '../models/dashboard_item';
+import { ValidatedTask } from '../models/validated_task';
 import { Operation } from '../models/operation';
 
 function calculator(operation: Operation, left: number, right: number): number {
@@ -36,7 +36,7 @@ export default class MathService {
     return await this.taskRepository.findAll();
   }
 
-  async calculateAndVerify() : Promise<DashBoardItem> {
+  async calculateAndVerify() : Promise<ValidatedTask> {
     const calculationTask = await this.taskAdapter.get();
     
     const result: number = calculator(calculationTask.operation,calculationTask.left, calculationTask.right);
@@ -45,14 +45,14 @@ export default class MathService {
 
     const validationStatus: string = await this.taskAdapter.post(resolvedTask);
 
-    const item: DashBoardItem = {id: calculationTask.id, 
+    const validatedTask: ValidatedTask = {id: calculationTask.id, 
                                 left: calculationTask.left, 
                                 right: calculationTask.right, 
                                 operation: calculationTask.operation, 
                                 result: result, 
                                 validationStatus: validationStatus};
 
-    this.taskRepository.save(item);
-    return item;
+    this.taskRepository.save(validatedTask);
+    return validatedTask;
   }
 }
