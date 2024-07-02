@@ -1,8 +1,14 @@
 <html>
-    <body>
-          <div>
-              <h2>Name: <%= x %></h2>
-              <p>Birth Year: <%= y %></p>
-          </div>
-       </body>
+   <body>
+    <% data.forEach(task => { %>
+      <div>
+        <p>id: <%= task.id %></p>
+        <p>Left: <%= task.left %></p>
+        <p>Right: <%= task.right %></p>
+        <p>Operation: <%= task.operation %></p>
+        <p>Calculation: <%= task.calculation %></p>
+        <p>Result: <%= task.result %></p>
+      </div>
+  <% }) %>
+   </body>
 </html>

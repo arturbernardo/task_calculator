@@ -1,9 +1,4 @@
-export type Operation = 
-                        "addition" 
-                        | "subtraction" 
-                        | "multiplication" 
-                        | "division" 
-                        | "remainder";
+import { Operation } from "./operation";
 
 export interface TaskResponse {
   id: string;

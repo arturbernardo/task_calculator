@@ -7,19 +7,20 @@ const router = new Router();
 
 const taskService = new TaskService(new TaskDao(), new TaskAdapter());
 
-
 router.get('/', async (ctx) => {
-  taskService.findAll().then(data => {
-    ctx.body = data;
-  });
+  const data = await taskService.findAll();
+  ctx.body = data;
 });
 
 router.post('/', async (ctx) => {
-  taskService.getAndSave().then(data => {
-    ctx.body = data;
-  });
+  const data = await taskService.getTask();
+  ctx.body = data;
 });
 
+router.post('/calculateAndVerify', async (ctx) => {
+  const data = await taskService.calculateAndVerify();
+  ctx.body = data;
+});
 
 export { router };
  

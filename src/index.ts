@@ -5,6 +5,7 @@ import config from './configs/config';
 
 import { router as calcDashRoutes } from './controllers/dashboard_controller';
 import { router as taskRoutes } from './controllers/task_controller';
+import PeriodicTask from './tasks/periodic_task';
 
 const PORT = config.PORT
 const app = new Koa();
@@ -16,6 +17,8 @@ app.use(views(__dirname + '/views', {
 app.use(mount('/dashboard', calcDashRoutes.routes()));
 app.use(mount('/task', taskRoutes.routes()));
 
+const task = new PeriodicTask();
+// task.start();
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
