@@ -35,6 +35,9 @@ A log informs about this adjustment:
 adding delay, from 1000ms to 2000ms
 ```
 
+The dashboard page is updated with the new task request pooling time:
+#### Execution Time: 2000 ms
+
 ## Errors
 For undesired HTTP status responses, error logs are created:
 ```
