@@ -1,6 +1,5 @@
 import TaskDao from '../repositories/task_dao';
 import TaskAdapter from '../adapters/task_adapter';
-import { ArithmeticTask } from '../models/arithmetic_task';
 import { ResolvedTask } from '../models/resolved_task';
 import { ValidatedTask } from '../models/validated_task';
 import { Operation } from '../models/operation';
@@ -23,7 +22,7 @@ export default class MathService {
 
   async calculateAndVerify() : Promise<ValidatedTask> {
     const calculationTask = await this.taskAdapter.getTask();
-    
+
     const result: number = this.calculator(calculationTask.operation,calculationTask.left, calculationTask.right);
 
     const resolvedTask: ResolvedTask = {id: calculationTask.id, result: result};
