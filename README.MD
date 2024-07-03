@@ -59,4 +59,11 @@ The .env file contains the following configurations:
 * Enhanced testing is necessary.
 * Ensure adherence to common JS/TS patterns.
 * Dashboard update time should be externilized or configurable by api.
-* Making the dashboard update time externalized or configurable via API.
+* Task requisition time should externalized or configurable via API.
+* An API to mess with the calculator and create exemples of erros.
+
+#### If you are unable to control the API and want to simulate dashboard errors within this application:
+- in *src/services/math_service.ts::44*, you can find the calculator. Mess with some calculations, and the system will generate erros.
+- in *src/adapters/task_adapter.ts::32*, you will find the logic that enhances the polling time in case of a ToManyRequests error. Change to BadRequest and you will observe the system's behavior to diminish the number of request.
+
+![Dashoard](dash.png)
