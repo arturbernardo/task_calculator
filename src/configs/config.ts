@@ -5,12 +5,14 @@ dotenv.config();
 interface Config {
   PORT: number;
   POOLING_MILLISECONDS: number;
+  TO_MANY_REQ_DELAY: number;
   TASK_URL: string;
 }
 
 const config : Config = {
   PORT: parseEnvNumber(process.env.PORT, 3000),
   POOLING_MILLISECONDS: parseEnvNumber(process.env.POOLING_MILLISECONDS, 10000),
+  TO_MANY_REQ_DELAY: parseEnvNumber(process.env.TO_MANY_REQ_DELAY, 10000),
   TASK_URL: parseEnvString(process.env.TASK_URL)
 };
 
