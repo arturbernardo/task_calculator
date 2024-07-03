@@ -6,5 +6,6 @@ export type ValidatedTask = {
   left: number;
   operation: Operation;
   result: number;
-  validationStatus: string;
+  validationStatus: boolean;
+  reason: string;
 }

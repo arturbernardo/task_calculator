@@ -27,14 +27,15 @@ export default class MathService {
 
     const resolvedTask: ResolvedTask = {id: calculationTask.id, result: result};
 
-    const validationStatus: string = await this.taskAdapter.postSolution(resolvedTask);
+    const [success, message] = await this.taskAdapter.postSolution(resolvedTask);
 
     const validatedTask: ValidatedTask = {id: calculationTask.id, 
                                 left: calculationTask.left, 
                                 right: calculationTask.right, 
                                 operation: calculationTask.operation, 
                                 result: result, 
-                                validationStatus: validationStatus};
+                                validationStatus: success,
+                                reason: message};
 
     this.taskRepository.save(validatedTask);
     return validatedTask;

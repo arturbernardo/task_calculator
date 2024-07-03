@@ -1,0 +1,1 @@
+export type ApiResponse = [success: boolean, reason: string];
