@@ -5,16 +5,6 @@ import { ResolvedTask } from '../models/resolved_task';
 import { ValidatedTask } from '../models/validated_task';
 import { Operation } from '../models/operation';
 
-function calculator(operation: Operation, left: number, right: number): number {
-  switch(operation) {
-    case 'addition': return left+right;
-    case 'subtraction': return left-right;
-    case 'multiplication': return left*right;
-    case 'division': return left/right;
-    case 'remainder': return left%right;
-  }
-}
-
 export default class MathService {  
   private readonly taskRepository: TaskDao;
   private readonly taskAdapter: TaskAdapter;
@@ -27,23 +17,18 @@ export default class MathService {
     this.taskAdapter = taskAdapter;
   }
 
-  async getTask() : Promise<ArithmeticTask> {
-    const response = await this.taskAdapter.get();
-    return response;
-  }
-
   async findAll() {
     return await this.taskRepository.findAll();
   }
 
   async calculateAndVerify() : Promise<ValidatedTask> {
-    const calculationTask = await this.taskAdapter.get();
+    const calculationTask = await this.taskAdapter.getTask();
     
-    const result: number = calculator(calculationTask.operation,calculationTask.left, calculationTask.right);
+    const result: number = this.calculator(calculationTask.operation,calculationTask.left, calculationTask.right);
 
     const resolvedTask: ResolvedTask = {id: calculationTask.id, result: result};
 
-    const validationStatus: string = await this.taskAdapter.post(resolvedTask);
+    const validationStatus: string = await this.taskAdapter.postSolution(resolvedTask);
 
     const validatedTask: ValidatedTask = {id: calculationTask.id, 
                                 left: calculationTask.left, 
@@ -54,5 +39,15 @@ export default class MathService {
 
     this.taskRepository.save(validatedTask);
     return validatedTask;
+  }
+
+  calculator(operation: Operation, left: number, right: number): number {
+    switch(operation) {
+      case 'addition': return left+right;
+      case 'subtraction': return left-right;
+      case 'multiplication': return left*right;
+      case 'division': return left/right;
+      case 'remainder': return left%right;
+    }
   }
 }

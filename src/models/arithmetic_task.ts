@@ -1,6 +1,6 @@
 import { Operation } from './operation';
 
-export interface ArithmeticTask {
+export type ArithmeticTask = {
   id: string;
   operation: Operation;
   right: number;

@@ -8,16 +8,14 @@ const api = axios.create({
 });
 
 export default class TaskAdapter {
-  async get() : Promise<ArithmeticTask> {
+  async getTask() : Promise<ArithmeticTask> {
     const result = await api.get<ArithmeticTask>('/v1/get-task');
     return result.data;
   }
 
-  async post(request : ResolvedTask) : Promise<string> {
+  async postSolution(request : ResolvedTask) : Promise<string> {
     try {
-      console.log(request);
       const result = await api.post<string>('/v1/submit-task', request);
-      console.log(`RESULT: {result.status} - {result.data}`);
       return result.data; 
     } 
     catch (error) {
