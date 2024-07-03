@@ -16,8 +16,8 @@ export default class MathService {
     this.taskAdapter = taskAdapter;
   }
 
-  async findAll() {
-    return await this.taskRepository.findAll();
+  async findAll(): Promise<ValidatedTask[]>{
+    return this.taskRepository.findAll();
   }
 
   async calculateAndVerify() : Promise<ValidatedTask> {

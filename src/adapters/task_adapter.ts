@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { HttpStatusCode } from 'axios';
 import { ArithmeticTask } from '../models/arithmetic_task';
 import { ResolvedTask } from '../models/resolved_task';
 import config from '../configs/config';
@@ -11,8 +11,8 @@ const api = axios.create({
 
 export default class TaskAdapter {
 
-  job: PeriodicTask;
-  constructor(job : PeriodicTask) {
+  job?: PeriodicTask;
+  constructor(job? : PeriodicTask) {
     this.job = job;
   }
 
@@ -29,8 +29,8 @@ export default class TaskAdapter {
     catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          if (error.response.status == 429) {
-            this.job.restart();
+          if (error.response.status == HttpStatusCode.TooManyRequests) {
+            this.job?.restart();
             return [false,  error.response.data];
           }
           console.error('Error status:', error.response.status);

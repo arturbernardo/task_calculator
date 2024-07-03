@@ -10,7 +10,7 @@ const mathService = new MathService(new TaskDao(), new TaskAdapter(job));
 
 router.get('/', async (ctx) => {
   const data = await mathService.findAll();
-  await ctx.render('index', {data: data});
+  await ctx.render('index', {data: data, jobTime: job.getTime()});
 });
 
 export { router };

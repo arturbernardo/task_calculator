@@ -17,7 +17,12 @@ app.use(views(__dirname + '/views', {
 
 app.use(mount('/dashboard', calcDashRoutes.routes()));
 
-job.start();
+try {
+  job.start();
+} catch(e) {
+  // Avoid problems with tests.
+  // Is not pretty, I know.
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

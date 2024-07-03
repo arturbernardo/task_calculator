@@ -3,7 +3,6 @@ import MathService from '../services/math_service';
 import TaskDao from '../repositories/task_dao';
 import TaskAdapter from '../adapters/task_adapter';
 
-
 export class PeriodicTask {
   private POOLING = config.POOLING_MILLISECONDS;
   private TO_MANY_REQ_DELAY = config.TO_MANY_REQ_DELAY;
@@ -31,6 +30,10 @@ export class PeriodicTask {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
+  }
+
+  getTime() {
+    return this.POOLING;
   }
   
   private executeTask() {

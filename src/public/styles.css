@@ -58,6 +58,11 @@ h1{
     margin: 50px;
   }
   
+  .info {
+    font-weight: bold;
+    font-family: arial;
+    color: #fff;
+  }
   
   /* follow me template */
   .made-with-love {
