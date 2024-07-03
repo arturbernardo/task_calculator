@@ -2,14 +2,6 @@ import TaskAdapter from '../src/adapters/task_adapter';
 import TaskDao from '../src/repositories/task_dao';
 import MathService from '../src/services/math_service';
 
-jest.mock('../src/jobs/periodic_task', () => {
-  return jest.fn().mockImplementationOnce(() => {
-    return {
-      start: jest.fn(),
-    };
-  });
-});
-
 const mockAdapter: jest.Mocked<TaskAdapter> = {
   getTask: jest.fn(),
   postSolution: jest.fn()
